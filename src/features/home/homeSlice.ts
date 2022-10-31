@@ -1,11 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { IItem } from '../../interfaces/item'
+import { IMovie } from '../../interfaces/movie'
+import { IShow } from '../../interfaces/show'
 import { getPopularMovies } from '../../providers/movies'
 import { getPopularShows } from '../../providers/shows'
 
+type Item = IMovie & IShow
+
 export interface IHomeState {
-  items: IItem[]
-  selectedItem: IItem | null | undefined
+  items: Item[]
+  selectedItem: Item | null | undefined
+  isMovie: boolean
   loading: boolean
   error: boolean
 }
@@ -13,6 +17,7 @@ export interface IHomeState {
 const initialState: IHomeState = {
   items: [],
   selectedItem: null,
+  isMovie: false,
   loading: false,
   error: true
 }
@@ -36,6 +41,7 @@ const homeSlice = createSlice({
       state.selectedItem = state.items.find(
         (item) => item.id === action.payload
       )
+      state.isMovie = !state.selectedItem?.name
     }
   },
   extraReducers: (builder) => {
@@ -50,6 +56,7 @@ const homeSlice = createSlice({
       const items = [...moviesArray, ...showsArray]
 
       state.selectedItem = items[0]
+      state.isMovie = !state.selectedItem?.name
       state.items = [...moviesArray, ...showsArray]
     })
     builder.addCase(getItems.rejected, (state) => {

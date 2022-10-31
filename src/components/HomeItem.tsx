@@ -2,14 +2,13 @@ import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { useSelector } from 'react-redux'
 import { IStore } from '../app/store'
 import { Link } from 'react-router-dom'
-
-const POSTER_PATH_BASE_URL = process.env.REACT_APP_POSTER_PATH_BASE_URL
+import { POSTER_PATH_BASE_URL } from '../lib/constants'
 
 const HomeItem = () => {
   const { selectedItem } = useSelector((store: IStore) => store.home)
 
   return (
-    <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md">
       <img
         className="rounded-t-lg object-cover"
         src={`${POSTER_PATH_BASE_URL}${selectedItem?.poster_path}`}
@@ -18,16 +17,16 @@ const HomeItem = () => {
 
       <div className="p-5">
         <div className="mb-2 flex items-center justify-between gap-x-2">
-          <h5 className="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-800">
             {selectedItem?.title || selectedItem?.name}
-          </h5>
+          </h2>
 
           <span className="inline-flex items-center rounded-md bg-cyan-100 px-2.5 py-0.5 text-sm font-medium text-cyan-800">
             {selectedItem?.vote_average}/10
           </span>
         </div>
 
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
+        <p className="mb-3 font-normal text-gray-700 line-clamp-3">
           {selectedItem?.overview ? selectedItem.overview : 'No overview'}
         </p>
 

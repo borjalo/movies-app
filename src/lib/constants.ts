@@ -1,0 +1,1 @@
+export const POSTER_PATH_BASE_URL = process.env.REACT_APP_POSTER_PATH_BASE_URL
