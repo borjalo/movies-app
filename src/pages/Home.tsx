@@ -63,7 +63,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center h-full">
-      <h1 className="text-xl font-bold leading-8 tracking-tight text-gray-900 sm:text-2xl">
+      <h1 className="text-xl font-bold leading-8 tracking-tight text-gray-800 sm:text-2xl">
         Most popular movies and TV shows
       </h1>
 
