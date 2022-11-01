@@ -2,22 +2,10 @@ import { useSelector } from 'react-redux'
 import { IStore } from '../../app/store'
 import { POSTER_PATH_BASE_URL } from '../../lib/constants'
 import NoImage from '../../images/no-image.jpeg'
-import { Pulsar } from '@uiball/loaders'
 
 const SimilarItems = () => {
   const { isMovie } = useSelector((store: IStore) => store.home)
-  const { similarItems, loading } = useSelector(
-    (store: IStore) => store.details
-  )
-
-  if (loading) {
-    return (
-      <div className="w-full flex flex-col justify-center">
-        <Pulsar />
-        <div>Loading...</div>
-      </div>
-    )
-  }
+  const { similarItems } = useSelector((store: IStore) => store.details)
 
   return (
     <div className="my-8 flex flex-col gap-y-2">
