@@ -24,10 +24,12 @@ const Details = () => {
 
   return (
     <div className="pt-10 flex flex-col gap-4 max-w-3xl mx-auto">
-      <div className="self-start">
+      <div className="flex items-center gap-x-4 self-start">
         <button onClick={() => navigate(-1)}>
           <ChevronLeftIcon className="w-10 h-10 text-cyan-500" />
         </button>
+
+        <h1 className="text-2xl font-bold text-gray-800">Details</h1>
       </div>
 
       <div className="grid grid-cols-2 gap-x-4 mb-8">
