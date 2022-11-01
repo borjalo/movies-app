@@ -7,7 +7,7 @@ import {
 import { useEffect } from 'react'
 import { Pulsar } from '@uiball/loaders'
 import { AppDispatch, IStore } from '../app/store'
-import HomeItem from '../components/HomeItem'
+import HomeItem from '../components/home/HomeItem'
 import { getItems, setSelectedItem } from '../features/home/homeSlice'
 
 const Home = () => {

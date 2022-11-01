@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { AppDispatch, IStore } from '../app/store'
-import SimilarItems from '../components/SimilarItems'
+import SimilarItems from '../components/details/SimilarItems'
 import {
   getItemDetails,
   getSimilarItems

@@ -1,8 +1,8 @@
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { useSelector } from 'react-redux'
-import { IStore } from '../app/store'
+import { IStore } from '../../app/store'
 import { Link } from 'react-router-dom'
-import { POSTER_PATH_BASE_URL } from '../lib/constants'
+import { POSTER_PATH_BASE_URL } from '../../lib/constants'
 
 const HomeItem = () => {
   const { selectedItem } = useSelector((store: IStore) => store.home)
