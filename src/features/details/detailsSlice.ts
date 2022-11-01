@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { IStore } from '../../app/store'
 import { IMovie } from '../../interfaces/movie'
 import { IShow } from '../../interfaces/show'
 import { getMovieDetails, getSimilarMovies } from '../../providers/movies'
@@ -22,9 +23,11 @@ const initialState: IDetailsState = {
 
 export const getItemDetails = createAsyncThunk(
   'details/getItemDetails',
-  async (args: { id: number; isMovie: boolean }, thunkAPI) => {
+  async (args: { id: number }, thunkAPI) => {
     try {
-      if (args.isMovie) {
+      const store = thunkAPI.getState() as IStore
+
+      if (store.home.isMovie) {
         return await getMovieDetails(args.id)
       }
 
@@ -37,9 +40,11 @@ export const getItemDetails = createAsyncThunk(
 
 export const getSimilarItems = createAsyncThunk(
   'details/getSimilarItems',
-  async (args: { id: number; isMovie: boolean }, thunkAPI) => {
+  async (args: { id: number }, thunkAPI) => {
     try {
-      if (args.isMovie) {
+      const store = thunkAPI.getState() as IStore
+
+      if (store.home.isMovie) {
         return await getSimilarMovies(args.id)
       }
 
