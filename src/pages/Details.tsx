@@ -1,12 +1,10 @@
-import {
-  ChevronLeftIcon,
-  ExclamationCircleIcon
-} from '@heroicons/react/24/solid'
-import { Pulsar } from '@uiball/loaders'
+import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { AppDispatch, IStore } from '../app/store'
+import ErrorState from '../components/details/ErrorState'
+import LoadingState from '../components/details/LoadingState'
 import SimilarItems from '../components/details/SimilarItems'
 import {
   getItemDetails,
@@ -26,28 +24,11 @@ const Details = () => {
   }, [id])
 
   if (loading) {
-    return (
-      <div className="h-full flex flex-col gap-2 items-center justify-center">
-        <Pulsar />
-        <p>Loading...</p>
-      </div>
-    )
+    return <LoadingState />
   }
 
   if (error) {
-    return (
-      <div className="flex flex-col gap-4 justify-center items-center h-full">
-        <ExclamationCircleIcon className="w-12 h-12 text-red-500" />
-        <p className="text-red-500">Something went wrong</p>
-        <button
-          onClick={() => dispatch(getItemDetails({ id: Number(id) }))}
-          type="button"
-          className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-cyan-700 focus:outline-none"
-        >
-          Try again
-        </button>
-      </div>
-    )
+    return <ErrorState id={id} />
   }
 
   return (
