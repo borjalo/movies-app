@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { IStore } from '../../app/store'
 import { POSTER_PATH_BASE_URL } from '../../lib/constants'
-import NoImage from '../images/no-image.jpeg'
+import NoImage from '../../images/no-image.jpeg'
 import { Pulsar } from '@uiball/loaders'
 
 const SimilarItems = () => {
