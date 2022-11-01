@@ -27,7 +27,7 @@ export const getItemDetails = createAsyncThunk(
     try {
       const store = thunkAPI.getState() as IStore
 
-      if (store.home.isMovie) {
+      if (!store.home.selectedItem?.name) {
         return await getMovieDetails(args.id)
       }
 
@@ -44,7 +44,7 @@ export const getSimilarItems = createAsyncThunk(
     try {
       const store = thunkAPI.getState() as IStore
 
-      if (store.home.isMovie) {
+      if (!store.home.selectedItem?.name) {
         return await getSimilarMovies(args.id)
       }
 
