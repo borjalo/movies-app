@@ -1,4 +1,8 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+import {
+  ChevronLeftIcon,
+  ExclamationCircleIcon
+} from '@heroicons/react/24/solid'
+import { Pulsar } from '@uiball/loaders'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -11,16 +15,40 @@ import {
 import { POSTER_PATH_BASE_URL } from '../lib/constants'
 
 const Details = () => {
-  const { isMovie } = useSelector((store: IStore) => store.home)
-  const { item } = useSelector((store: IStore) => store.details)
+  const { item, loading, error } = useSelector((store: IStore) => store.details)
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
-    dispatch(getItemDetails({ id: Number(id), isMovie }))
-    dispatch(getSimilarItems({ id: Number(id), isMovie }))
+    dispatch(getItemDetails({ id: Number(id) }))
+    dispatch(getSimilarItems({ id: Number(id) }))
   }, [id])
+
+  if (loading) {
+    return (
+      <div className="h-full flex flex-col gap-2 items-center justify-center">
+        <Pulsar />
+        <p>Loading...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col gap-4 justify-center items-center h-full">
+        <ExclamationCircleIcon className="w-12 h-12 text-red-500" />
+        <p className="text-red-500">Something went wrong</p>
+        <button
+          onClick={() => dispatch(getItemDetails({ id: Number(id) }))}
+          type="button"
+          className="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-cyan-700 focus:outline-none"
+        >
+          Try again
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="pt-10 flex flex-col gap-4 max-w-3xl mx-auto">
