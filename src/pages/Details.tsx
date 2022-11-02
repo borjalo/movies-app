@@ -21,7 +21,7 @@ const Details = () => {
   useEffect(() => {
     dispatch(getItemDetails({ id: Number(id) }))
     dispatch(getSimilarItems({ id: Number(id) }))
-  }, [id])
+  }, [id, dispatch])
 
   if (loading) {
     return <LoadingState />
