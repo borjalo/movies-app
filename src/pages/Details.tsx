@@ -6,6 +6,7 @@ import { AppDispatch, IStore } from '../app/store'
 import ErrorState from '../components/details/ErrorState'
 import LoadingState from '../components/details/LoadingState'
 import SimilarItems from '../components/details/SimilarItems'
+import Divider from '../components/Divider'
 import {
   getItemDetails,
   getSimilarItems
@@ -57,7 +58,7 @@ const Details = () => {
         </div>
       </div>
 
-      <div className="w-full border-t border-gray-300" />
+      <Divider />
 
       <SimilarItems />
     </div>
